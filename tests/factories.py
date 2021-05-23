@@ -1,3 +1,4 @@
+from inspect import Arguments
 from factory import Faker, Sequence, SubFactory
 from factory.alchemy import SQLAlchemyModelFactory
 
@@ -30,11 +31,11 @@ class PersonFactory(BaseFactory):
 
 class ConnectionFactory(BaseFactory):
     """Connection factory."""
-
+  
     connection_type = 'friend'
 
-    from_person = SubFactory(PersonFactory)
-    to_person = SubFactory(PersonFactory)
+    from_person_id = SubFactory(PersonFactory)
+    to_person_id = SubFactory(PersonFactory)
 
     class Meta:
 
