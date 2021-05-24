@@ -58,6 +58,15 @@ def register_errorhandlers(app):
         }
         return jsonify(response), HTTPStatus.BAD_REQUEST
 
+    # Catch webargs validation errors and return them in JSON format
+    @app.errorhandler(ValueError)
+    def handle_validation_error(error):
+        response = {
+            'description': 'Input failed validation.',
+            'errors': str(error),
+        }
+        return jsonify(response), HTTPStatus.BAD_REQUEST    
+
     @app.errorhandler(IntegrityError)
     def handle_integrity_errors(error):
         return (jsonify({'description': f'Database integrity error: {error.orig.args[1]}'}),

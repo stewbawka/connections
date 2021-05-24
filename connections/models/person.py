@@ -12,6 +12,7 @@ class Person(Model, CRUDMixin, CreatedUpdatedMixin):
 
     def mutual_friends(self, person):
         # Query to find mutual friend in ORM with join and filter with type friend
+        # Select c.to_person_id from connections as c join connections as t on t.to_person_id = c.to_person_id and t.from_person_id = person.id where c.from_person_id = self.id
         list1_as_set = set([f.to_person_id for f in self.connections])
         return list1_as_set.intersection([f.to_person_id for f in person.connections]) 
         #return db.session.query(self.connections).add_columns(self.connections.to_person_id).join(person.connections).filter(person.connections.to_person_id == self.connections.to_person_id ).all()

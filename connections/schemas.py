@@ -41,3 +41,9 @@ class ConnectionSchema(BaseModelSchema):
     class Meta:
         model = Connection
 
+    @validates('connection_type') 
+    def validate_connection_type(self, connection_type):
+        if not (ConnectionType(connection_type)):
+            raise ValidationError('Cannot be out of Enum.') 
+        return connection_type
+
