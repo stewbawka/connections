@@ -1,0 +1,14 @@
+Uri: GET /people/<person_id>/connected_people?range=<range>
+
+
+What is the Maximus value the range?
+How do you want to show people list? Like most common friend on top Example: Person A is connected with most of the connection, then person A must be on top
+We might have to process lots of data what should be TPS for this service? Is there any page size or limit?
+What bussines value it has?
+
+Technical challenges:
+
+1. I think number one challenge will be performed with accurate data. 
+2. We need to implement tree search algorithm with minimum iteration.
+3. We can try if it provides great business value and help to our customers.
+

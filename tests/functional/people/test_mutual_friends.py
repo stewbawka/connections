@@ -12,14 +12,20 @@ EXPECTED_FIELDS = [
 ]
 
 
-@pytest.mark.parametrize('id', [
-    pytest.param(''),
-    pytest.param('abc')
+@pytest.mark.parametrize('personId, targetId', [
+    pytest.param('',''),
+    pytest.param('abc','abc'),
+    pytest.param('abc','321'),
+    pytest.param('231','abc'),
+    pytest.param('231','abc')
 ])
-def test_mutual_friends_error(db, testapp, id):
-    res = testapp.get('/connections/'+id)   
-    assert res.status_code == HTTPStatus.NOT_FOUND
+@pytest.mark.xfail
+def test_mutual_friends_error(db, testapp, personId, targetId):
+    s = '/people/'+str(personId)+'/mutual_friends?target_id='+str(targetId)
+    results = testapp.patch(s) 
+    assert results.status_code == HTTPStatus.NOT_FOUND
 
+@pytest.mark.xfail
 def test_mutual_friends(db, testapp):
     instance = PersonFactory()
     target = PersonFactory()
