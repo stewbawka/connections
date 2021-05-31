@@ -8,3 +8,6 @@
 .python-version
 .pytest_cache/
 reports/
+.vscode/settings.json
+.project
+.pydevproject
